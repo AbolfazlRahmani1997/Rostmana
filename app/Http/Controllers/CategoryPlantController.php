@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
+use App\CategoryPlant;
 use Illuminate\Http\Request;
-use App\User;
 
-class ProfileController extends Controller
+class CategoryPlantController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $id=$request->user()->id;
-        $user=User::find($id);
-        return $user->Profile;
-
+        //
     }
 
     /**
@@ -39,22 +35,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $user= User::find($request->user()->id);
-        $Profile=new Profile();
-        $Profile->firstname=$request->fname;
-        $Profile->lastname=$request->lname;
-        // todo ::upload avatar and get link
-        $user->Profile()->save($Profile);
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\CategoryPlant  $categoryPlant
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(CategoryPlant $categoryPlant)
     {
         //
     }
@@ -62,10 +52,10 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\CategoryPlant  $categoryPlant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(CategoryPlant $categoryPlant)
     {
         //
     }
@@ -74,10 +64,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \App\CategoryPlant  $categoryPlant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, CategoryPlant $categoryPlant)
     {
         //
     }
@@ -85,10 +75,10 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\CategoryPlant  $categoryPlant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(CategoryPlant $categoryPlant)
     {
         //
     }

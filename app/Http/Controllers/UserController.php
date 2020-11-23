@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use App\builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,11 +24,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::first();
-        return $user->Profile->phonenumber;
 
+        $user=User::find($request->user()->id);
+        foreach ($user->builder as $builuder){
+           $biluders= builder::find($builuder->id)->with('gender','automode','watermode')->get();
+        }
+    return response()->json(array('user'=>$user),'200');
 
     }
 
@@ -55,7 +59,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @tparam int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,15 +67,14 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
+    /*** Show the form for editing the specified resource.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -98,7 +101,8 @@ class UserController extends Controller
     }
 
     public function login(Request $request)
-    { $user = User::where('phonenumber', $request->phonenumber)
+    {
+        $user = User::where('phonenumber', $request->phonenumber)
         ->first();
         if($user){
             if (Hash::check($request->password, $user->password)) {
@@ -144,6 +148,6 @@ class UserController extends Controller
             'token' => $token,
         ], 201);
     }
-
+//TODO send code by sms
 
 }

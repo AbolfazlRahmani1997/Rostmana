@@ -20,7 +20,10 @@ class User extends Authenticatable
         'phonenumber', 'email', 'password',
     ];
     public function Profile(){
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile','user_id');
+    }
+    public function builder(){
+        return $this->belongsToMany('App\builder','builder_user','user_id');
     }
 
     /**

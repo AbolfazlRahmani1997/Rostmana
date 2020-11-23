@@ -15,6 +15,15 @@ class CreateBuildersTable extends Migration
     {
         Schema::create('builders', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('model');
+            $table->float('width');
+            $table->float('length');
+            $table->string('icon');
+            $table->unsignedInteger('gender_id');
+            $table->unsignedInteger('automode_id');
+            $table->unsignedInteger('watermode_id');
+            $table->unsignedInteger('picture');
             $table->timestamps();
         });
     }

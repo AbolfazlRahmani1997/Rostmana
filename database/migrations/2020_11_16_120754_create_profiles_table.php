@@ -17,8 +17,11 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('avatar');
-            $table->integer('phonenumber')->unique();
+            //TODO insart row INSRAgram and Email
+//            $table->integer('phonenumber')->unique();
             $table->timestamps();
         });
     }
